@@ -23,17 +23,17 @@ public class MainController {
                                 @RequestParam(value = "pageSize",required = false) Integer pageSize,
                                 @RequestParam(value = "username",required = false) String username) {
         System.out.println("username:"+username);
-        int total = userService.getUserNum(username);
+        int total = userService.getUserNum();
         String pageStr = page + "";
         String pageSizeStr = pageSize + "";
         if("".equals(pageStr))
             page = 1;
         if("".equals(pageSizeStr))
             pageSize = 10;
-        List<User> data = userService.getPageUser(1,10,username);
+        List<User> data = userService.getPageUser(1,10);
         System.out.println("data:"+data.size());
         UserGrid userGrid = new UserGrid();
-        userGrid.setData(data);
+        userGrid.setRows(data);
         userGrid.setTotal(total);
         return userGrid;
     }
